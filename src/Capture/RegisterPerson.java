@@ -6,9 +6,12 @@ package Capture;
  * @author makss
  */
 public class RegisterPerson extends javax.swing.JFrame {
-
+    
+    User.ConnectDB conn = new User.ConnectDB();
+    
     public RegisterPerson() {
         initComponents();
+        showIDUser();
     }
 
     @SuppressWarnings("unchecked")
@@ -157,5 +160,9 @@ public class RegisterPerson extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+
+    private void showIDUser() {
+        conn.connect();
+    }
 
 }
