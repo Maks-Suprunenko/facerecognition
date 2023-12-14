@@ -8,6 +8,8 @@ package Capture;
 public class RegisterPerson extends javax.swing.JFrame {
     
     User.ConnectDB conn = new User.ConnectDB();
+    User.ControlPerson cod;
+    User.ModelPerson mod;
     
     public RegisterPerson() {
         initComponents();
@@ -20,21 +22,21 @@ public class RegisterPerson extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        txt_id_label = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtWantedArt = new javax.swing.JTextField();
+        txtFatherName = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtPob = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtDob = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Реєстрація особи");
@@ -46,26 +48,27 @@ public class RegisterPerson extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Ідентифікатор особи: ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        txt_id_label.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txt_id_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_id_label.setText("1");
+        jPanel2.add(txt_id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 550, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 550, 80));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField2.setToolTipText("");
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 210, -1));
+        txtWantedArt.setToolTipText("");
+        jPanel3.add(txtWantedArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 210, -1));
 
-        jTextField3.setToolTipText("");
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, -1));
+        txtFatherName.setToolTipText("");
+        jPanel3.add(txtFatherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, -1));
 
-        jTextField5.setToolTipText("");
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 210, -1));
+        txtFirstName.setToolTipText("");
+        jPanel3.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 210, -1));
 
-        jTextField6.setToolTipText("");
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 210, -1));
+        txtLastName.setToolTipText("");
+        jPanel3.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 210, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Ім'я");
@@ -87,8 +90,8 @@ public class RegisterPerson extends javax.swing.JFrame {
         jLabel6.setText("Дата народження");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
 
-        jTextField7.setToolTipText("");
-        jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 210, -1));
+        txtPob.setToolTipText("");
+        jPanel3.add(txtPob, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 210, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Місце народження");
@@ -97,15 +100,21 @@ public class RegisterPerson extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 204, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Зберегти");
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+        jButton1.setText("Далі");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDob.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel3.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 210, -1));
+        jPanel3.add(txtDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 210, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 550, 290));
 
@@ -114,6 +123,18 @@ public class RegisterPerson extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(590, 522));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cod = new User.ControlPerson();
+        mod = new User.ModelPerson();
+        mod.setFirstName(txtFirstName.getText());
+        mod.setLastName(txtLastName.getText());
+        mod.setFatherName(txtFatherName.getText());
+        mod.setdOb(txtDob.getText());
+        mod.setpOb(txtPob.getText());
+        mod.setWantedArticle(txtWantedArt.getText());
+        cod.insert(mod);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
     
@@ -143,8 +164,6 @@ public class RegisterPerson extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -154,15 +173,27 @@ public class RegisterPerson extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JFormattedTextField txtDob;
+    private javax.swing.JTextField txtFatherName;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtPob;
+    private javax.swing.JTextField txtWantedArt;
+    private javax.swing.JLabel txt_id_label;
     // End of variables declaration//GEN-END:variables
 
     private void showIDUser() {
         conn.connect();
+        try{
+            conn.executeSQL("SELECT * FROM person ORDER BY id DESC LIMIT 1");
+            conn.rs.first();
+            txt_id_label.setText(String.valueOf(conn.rs.getInt("id")));
+            int id = Integer.parseInt(txt_id_label.getText());
+            id++;
+            txt_id_label.setText(String.valueOf(id));
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
 }
